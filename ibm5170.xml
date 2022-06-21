@@ -1,0 +1,41 @@
+<machine id="ibm5170" type="pcx86" border="1" pos="center" background="default" debugger="available">
+	<name pos="center">IBM PC AT (8Mhz), 640Kb RAM, Dual Floppy Drives, CGA</name>
+	<computer id="at-mda-640k" name="IBM PC AT" buswidth="24"></computer>
+	<cpu id="cpu286" model="80286" cycles="8000000"></cpu>
+	<ram id="ramLow" addr="0x00000" size="0xa0000"></ram>
+	<rom id="romBIOS" addr="0xf0000" size="0x10000" alias="0xff0000" file="/machines/pcx86/ibm/5170/rom/bios/1985-11-15/ATBIOS-REV3.json"></rom>
+	<video id="videoCGA" screenWidth="1280" screenHeight="800" fontROM="/machines/pcx86/ibm/video/cga/IBM-CGA.json" pos="center" padding="8px">
+	<menu>
+		<title>Color Display</title>
+		<control type="container" pos="right">
+			<control type="led" label="Caps" binding="caps-lock" padLeft="8px"></control>
+			<control type="led" label="Num" binding="num-lock" padLeft="8px"></control>
+			<control type="led" label="Scroll" binding="scroll-lock" padLeft="8px"></control>
+			<control type="button" binding="fullScreen" padLeft="8px;line-height:1em">Full Screen</control>
+		</control>
+	</menu>
+	</video>
+	<fdc id="fdcNEC" autoMount="{A:{name:"PC DOS 2.00 (Disk 1)"}, B:{name:"PC DOS 2.00 (Disk 2)"}}" diskettes="/configs/pcx86/diskettes.json,/configs/pcx86/private.json" server="/diskettes" sortBy="name" pos="left" padLeft="8px" padBottom="8px">
+	<control type="list" binding="listDrives"></control>
+	<control type="list" binding="listDisks">
+	</control>
+	<control type="button" binding="loadDisk">Load</control>
+	<control type="button" binding="saveDisk" padRight="8px">Save</control>
+	<control type="description" binding="descDisk" padRight="8px"></control>
+	<control type="file" binding="mountDisk"></control>
+	</fdc>
+	<hdc id="hdcAT" type="AT" drives="[{name:"20Mb Hard Disk",type:2}]">
+	<control type="button" binding="saveHD0" padLeft="8px" padBottom="8px" padRight="8px">Save HD</control>
+	</hdc>
+	<keyboard id="keyboard" model="us84" style="pointer-events:none;">
+	<control type="container" style="pointer-events:auto;">
+		<control type="button" binding="ctrl-alt-del" padLeft="8px" padBottom="8px">Ctrl-Alt-Del</control>
+		<control type="button" binding="keyboard" padLeft="8px" padBottom="8px">Keys</control>
+	</control>
+	<!-- soft-keyboard -->
+	<!-- soft-keyboard-mobile -->
+	</keyboard>
+	<chipset id="chipset" model="5170" floppies="[1200,1200]" monitor="color"></chipset>
+	<serial id="com1" adapter="1"></serial>
+	<mouse serial="com1"></mouse>
+</machine>
